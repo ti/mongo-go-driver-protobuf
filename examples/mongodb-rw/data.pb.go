@@ -7,9 +7,9 @@ import (
 	fmt "fmt"
 	pmongo "github.com/amsokol/mongo-go-driver-protobuf/pmongo"
 	_ "github.com/amsokol/protoc-gen-gotag/tagger"
-	proto "github.com/golang/protobuf/proto"
-	timestamp "github.com/golang/protobuf/ptypes/timestamp"
-	wrappers "github.com/golang/protobuf/ptypes/wrappers"
+	proto "google.golang.org/protobuf/proto"
+	timestamp "google.golang.org/protobuf/ptypes/timestamp"
+	wrappers "google.golang.org/protobuf/ptypes/wrappers"
 	math "math"
 )
 

@@ -27,8 +27,8 @@ It contains set of BSON marshal/unmarshal codecs for Google protocol buffers typ
 ## Links
 
 - Official MongoDB Go Driver: [https://go.mongodb.org/mongo-driver](https://go.mongodb.org/mongo-driver)
-- Google protocol buffers types (wrappers): [https://github.com/golang/protobuf/blob/master/ptypes/wrappers/wrappers.proto](https://github.com/golang/protobuf/blob/master/ptypes/wrappers/wrappers.proto)
-- Google protocol buffers Timestamp type: [https://github.com/golang/protobuf/blob/master/ptypes/timestamp/timestamp.proto](https://github.com/golang/protobuf/blob/master/ptypes/timestamp/timestamp.proto)
+- Google protocol buffers types (wrappers): [https://google.golang.org/protobuf/blob/master/ptypes/wrappers/wrappers.proto](https://google.golang.org/protobuf/blob/master/ptypes/wrappers/wrappers.proto)
+- Google protocol buffers Timestamp type: [https://google.golang.org/protobuf/blob/master/ptypes/timestamp/timestamp.proto](https://google.golang.org/protobuf/blob/master/ptypes/timestamp/timestamp.proto)
 - MongoDB ObjectID type: [https://github.com/mongodb/mongo-go-driver/blob/master/bson/primitive/objectid.go](https://github.com/mongodb/mongo-go-driver/blob/master/bson/primitive/objectid.go)
 - MongoDB ObjectID my proto wrapper: [https://github.com/amsokol/mongo-go-driver-protobuf/blob/master/proto/mongodb/objectid.proto](https://github.com/amsokol/mongo-go-driver-protobuf/blob/master/proto/mongodb/objectid.proto)
   

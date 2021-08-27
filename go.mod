@@ -1,6 +1,8 @@
-module github.com/amsokol/mongo-go-driver-protobuf
+module github.com/ti/mongo-go-driver-protobuf
+
+go 1.17
 
 require (
-	github.com/golang/protobuf v1.2.1-0.20190205222052-c823c79ea157
-	go.mongodb.org/mongo-driver v1.0.0-rc1
+	google.golang.org/protobuf v1.27.1
+	go.mongodb.org/mongo-driver v1.7.1
 )

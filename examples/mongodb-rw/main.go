@@ -6,9 +6,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/golang/protobuf/jsonpb"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/golang/protobuf/ptypes/wrappers"
+	"google.golang.org/protobuf/jsonpb"
+	"google.golang.org/protobuf/ptypes"
+	"google.golang.org/protobuf/ptypes/wrappers"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"

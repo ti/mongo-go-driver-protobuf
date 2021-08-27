@@ -2,18 +2,20 @@ package codecs
 
 import (
 	"bytes"
+	"github.com/golang/protobuf/jsonpb"
+	"google.golang.org/protobuf/encoding/protojson"
 	"reflect"
 	"testing"
 	"time"
 
-	"github.com/golang/protobuf/jsonpb"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/golang/protobuf/ptypes/wrappers"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 
+	"google.golang.org/protobuf/types/known/timestamppb"
+
 	"github.com/amsokol/mongo-go-driver-protobuf/pmongo"
-	"github.com/amsokol/mongo-go-driver-protobuf/test"
+	"github.com/ti/mongo-go-driver-protobuf/test"
 )
 
 func TestCodecs(t *testing.T) {
@@ -25,11 +27,7 @@ func TestCodecs(t *testing.T) {
 	tm = time.Date(tm.Year(), tm.Month(), tm.Day(), tm.Hour(), tm.Minute(), tm.Second(),
 		(tm.Nanosecond()/1000000)*1000000, tm.Location())
 
-	ts, err := ptypes.TimestampProto(tm)
-	if err != nil {
-		t.Errorf("ptypes.TimestampProto error = %v", err)
-		return
-	}
+	ts := timestamppb.New(tm)
 
 	objectID := primitive.NewObjectID()
 	id := pmongo.NewObjectId(objectID)
@@ -48,15 +46,15 @@ func TestCodecs(t *testing.T) {
 	})
 
 	in := test.Data{
-		BoolValue:   &wrappers.BoolValue{Value: true},
-		BytesValue:  &wrappers.BytesValue{Value: make([]byte, 5)},
-		DoubleValue: &wrappers.DoubleValue{Value: 1.2},
-		FloatValue:  &wrappers.FloatValue{Value: 1.3},
-		Int32Value:  &wrappers.Int32Value{Value: -12345},
-		Int64Value:  &wrappers.Int64Value{Value: -123456789},
-		StringValue: &wrappers.StringValue{Value: "qwerty"},
-		Uint32Value: &wrappers.UInt32Value{Value: 12345},
-		Uint64Value: &wrappers.UInt64Value{Value: 123456789},
+		BoolValue:   &wrapperspb.BoolValue{Value: true},
+		BytesValue:  &wrapperspb.BytesValue{Value: make([]byte, 5)},
+		DoubleValue: &wrapperspb.DoubleValue{Value: 1.2},
+		FloatValue:  &wrapperspb.FloatValue{Value: 1.3},
+		Int32Value:  &wrapperspb.Int32Value{Value: -12345},
+		Int64Value:  &wrapperspb.Int64Value{Value: -123456789},
+		StringValue: &wrapperspb.StringValue{Value: "qwerty"},
+		Uint32Value: &wrapperspb.UInt32Value{Value: 12345},
+		Uint64Value: &wrapperspb.UInt64Value{Value: 123456789},
 		Timestamp:   ts,
 		Id:          id,
 	}
@@ -84,7 +82,12 @@ func TestCodecs(t *testing.T) {
 	t.Run("marshal-jsonpb/unmarshal-jsonpb", func(t *testing.T) {
 		var b bytes.Buffer
 
+
 		m := &jsonpb.Marshaler{}
+
+		m1 := &protojson.MarshalOptions{}
+
+		m1.Marshal(&in)
 
 		if err := m.Marshal(&b, &in); err != nil {
 			t.Errorf("jsonpb.Marshaler.Marshal error = %v", err)
